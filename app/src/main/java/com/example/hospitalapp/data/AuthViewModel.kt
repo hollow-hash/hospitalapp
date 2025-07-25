@@ -15,13 +15,14 @@ class AuthViewModel:ViewModel() {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     fun signup(
         username: String,
+        fullname : String,
         email: String,
         password: String,
         confirmPassword: String,
         navController: NavController,
         context: Context
     ) {
-        if (username.isBlank() || email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
+        if (username.isBlank() || fullname.isBlank() || email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
             Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_LONG).show()
 //            to prevent the app crushing
             return
@@ -33,7 +34,7 @@ class AuthViewModel:ViewModel() {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val userId = auth.currentUser?.uid ?: ""
-                val user = UserModel(username = username, email = email, userId = userId)
+                val user = UserModel(username = username,fullname = fullname, email = email, userId = userId)
 
                 saveUserToDatabase(user, navController, context)
 
