@@ -14,6 +14,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
@@ -21,6 +24,8 @@ import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -49,6 +54,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import coil.compose.AsyncImage
 import com.example.hospitalapp.R
 import com.example.hospitalapp.data.AuthViewModel
 import com.example.hospitalapp.navigation.ROUTE_LOGIN
@@ -63,6 +69,7 @@ fun registerScreen(navController: NavController){
     var authViewModel: AuthViewModel = viewModel()
 
     Box(){
+
         Image(painter = painterResource(id = R.drawable.background),
             contentDescription = "register background",
             contentScale = ContentScale.FillBounds)
@@ -79,15 +86,22 @@ fun registerScreen(navController: NavController){
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
-
                 .padding(5.dp))
         Spacer(modifier = Modifier.height(1.dp))
+
+        Card(shape = CircleShape,
+            modifier = Modifier
+                .padding(10.dp)
+                .size(100.dp),
+            colors = CardDefaults.cardColors(Color.DarkGray),
+
+        ){
         Image(painter = painterResource(id = R.drawable.logo),
             contentDescription = "Image Logo",
             modifier = Modifier
                 .fillMaxWidth()
                 .height(80.dp),
-            contentScale = ContentScale.Fit)
+            contentScale = ContentScale.Fit)}
 
         OutlinedTextField(
             value = username,

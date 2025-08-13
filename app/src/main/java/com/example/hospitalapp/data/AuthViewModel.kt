@@ -86,4 +86,12 @@ class AuthViewModel:ViewModel() {
             }
         }
     }
+    fun logout(context:Context,navcontroller: NavController){
+        FirebaseAuth.getInstance().signOut()
+
+        Toast.makeText(context,"Logged out successfully",Toast.LENGTH_LONG).show()
+        navcontroller.navigate(ROUTE_LOGIN){
+            popUpTo(0) { inclusive = true}
+        }
+    }
 }
